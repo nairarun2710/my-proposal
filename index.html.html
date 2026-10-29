@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#190f25">
+<title>For Panda, Always ❤️</title>
+<style>
+:root{--pink:#ff5f91;--soft:#ffc1d2;--wine:#35152f;--cream:#fff5f8;--gold:#ffdca8}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#190f25;color:#fff;font-family:Georgia,'Times New Roman',serif;overflow-x:hidden}
+button,a{font:inherit}.top{position:relative;min-height:100svh;display:grid;place-items:center;text-align:center;overflow:hidden;padding:70px 22px;background:radial-gradient(ellipse at 50% 48%,#5c244d 0%,#29152f 48%,#130d20 100%)}
+.top:before,.top:after{content:"";position:absolute;border:1px solid #ffb7ce28;border-radius:50%;width:min(75vw,700px);aspect-ratio:1;animation:orbit 32s linear infinite}.top:after{width:min(94vw,900px);animation-direction:reverse}
+.glow{position:absolute;width:300px;height:300px;border-radius:50%;background:#ff548533;filter:blur(70px);top:15%;left:calc(50% - 150px);animation:glow 5s ease-in-out infinite}
+.heart-sky{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.float-heart{position:absolute;bottom:-12vh;left:var(--x);font-size:var(--size);color:var(--color);opacity:0;filter:drop-shadow(0 0 12px currentColor);animation:rise var(--duration) linear var(--delay) infinite;will-change:transform,opacity}
+.twinkle{position:absolute;left:var(--x);top:var(--y);color:#ffe3ec;opacity:.2;animation:twinkle var(--duration) ease-in-out var(--delay) infinite}
+.content{position:relative;z-index:2;max-width:800px}
+.kicker{font:600 .75rem Arial,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#ffd3e0}
+h1{font-size:clamp(3.2rem,10vw,7.4rem);font-weight:normal;line-height:.95;margin:24px 0;color:#fff3f7;text-shadow:0 0 30px #ff7fa566}
+h1 em{display:block;font-weight:normal;font-style:italic;color:#ff7fa4}
+.intro{font:1.05rem/1.8 Arial,sans-serif;color:#f7dce8;max-width:590px;margin:0 auto 30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid #ff9bb8;background:linear-gradient(135deg,#ff709a,#e83f79);color:white;border-radius:999px;padding:15px 25px;text-decoration:none;box-shadow:0 0 28px #ff5f9166;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 0 42px #ff5f91a0}.secondary{background:#ffffff0c;border-color:#c78aa8;box-shadow:none}
+.scroll{display:block;margin-top:42px;font:.75rem Arial,sans-serif;letter-spacing:.2em;color:#d9a9c0;text-transform:uppercase}
+.screen{display:none;min-height:100svh;position:relative;overflow:hidden;place-items:center;padding:65px 22px;text-align:center;animation:screenIn .65s ease both}
+.screen.active{display:grid}
+.screen-inner{position:relative;z-index:2;width:min(100%,850px)}
+.screen.pink{background:linear-gradient(145deg,#fff4f7,#ffe4ee);color:#47223b}
+.screen.purple{background:radial-gradient(ellipse at center,#572344,#1b1027 72%);color:white}
+.screen h2{font-size:clamp(2.1rem,6vw,4.1rem);font-weight:normal;line-height:1.1;margin:16px 0;color:inherit}
+.screen.pink h2{color:#7c244b}
+.screen .sub{font:1rem/1.8 Arial,sans-serif;max-width:650px;margin:0 auto 30px;color:inherit;opacity:.83}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:30px 0}
+.card{padding:25px 18px;border-radius:22px;background:#ffffffb8;border:1px solid #f7cada;box-shadow:0 14px 35px #7e1e3d0d;color:#704b61}
+.card .emoji{font-size:2.2rem;display:block;margin-bottom:12px;animation:tinybeat 2.6s infinite}.card h3{color:#7c244b;margin:0 0 10px;font-size:1.2rem}.card p{font:.93rem/1.7 Arial,sans-serif;margin:0}
+.note{background:#fffafc;border:1px solid #f3cada;border-radius:26px;padding:clamp(25px,6vw,55px);box-shadow:0 20px 60px #6e21451a;color:#704b61}
+.note p{font-size:1.1rem;line-height:1.9}.sign{font-style:italic;color:#e94f83;font-size:1.6rem}
+.heart-big{font-size:clamp(6rem,20vw,11rem);line-height:1;color:#ff6e9a;filter:drop-shadow(0 0 28px #ff5f91aa);animation:heartbeat 1.8s ease-in-out infinite}
+.choices{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.message{min-height:2em;color:#ffc2d8;font-size:1.15rem;margin-top:24px}
+.progress{position:fixed;top:0;left:0;height:3px;background:#ff6d9c;width:0;z-index:100;transition:width .4s}
+.foot{padding:22px;text-align:center;color:#c7a3b7;background:#120b1b;font:.8rem Arial,sans-serif}
+.burst{position:fixed;z-index:150;pointer-events:none;animation:burst 1.2s ease-out forwards;font-size:var(--s)}
+@keyframes rise{0%{transform:translate3d(0,0,0) rotate(0deg) scale(.7);opacity:0}10%{opacity:var(--op)}85%{opacity:var(--op)}100%{transform:translate3d(var(--drift),-120vh,0) rotate(var(--spin)) scale(1.25);opacity:0}}
+@keyframes orbit{to{transform:rotate(360deg)}}@keyframes glow{0%,100%{transform:scale(.85);opacity:.65}50%{transform:scale(1.15);opacity:1}}
+@keyframes twinkle{0%,100%{opacity:.15;transform:scale(.7)}50%{opacity:.9;transform:scale(1.3)}}@keyframes tinybeat{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@keyframes heartbeat{0%,100%{transform:scale(1)}12%{transform:scale(1.12)}24%{transform:scale(1)}36%{transform:scale(1.08)}}
+@keyframes screenIn{from{opacity:0;transform:translateY(24px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes burst{to{transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(.2);opacity:0}}
+@media(max-width:700px){.cards{grid-template-columns:1fr}.screen{padding:48px 18px}.intro{font-size:1rem}.float-heart{filter:drop-shadow(0 0 7px currentColor)}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<main>
+  <section class="screen top active" id="screen1" aria-label="Welcome screen">
+    <div class="glow"></div><div class="heart-sky" aria-hidden="true"></div>
+    <div class="content">
+      <div class="kicker">A tiny universe, made for you</div>
+      <h1>Hey, <em>Panda ♥</em></h1>
+      <p class="intro">If every little feeling I have for you became a heart, this sky still wouldn't be big enough. So I made you a little universe instead.</p>
+      <button class="btn next" data-next="2">Open your little surprise <span>♡</span></button>
+      <span class="scroll">♥ &nbsp; made just for you &nbsp; ♥</span>
+    </div>
+  </section>
+
+  <section class="screen pink" id="screen2" aria-label="Reasons screen">
+    <div class="heart-sky" aria-hidden="true"></div>
+    <div class="screen-inner">
+      <div class="kicker" style="color:#b74d78">Dear Panda</div>
+      <h2>Little things that mean a lot</h2>
+      <p class="sub">It's never just one big moment. It's all the tiny things that make someone special.</p>
+      <div class="cards">
+        <article class="card"><span class="emoji">🌷</span><h3>Your beautiful way</h3><p>I admire the person you are, not just the way you make me feel.</p></article>
+        <article class="card"><span class="emoji">✨</span><h3>The moments we keep</h3><p>The laughs, the talks, and the little memories that still make me smile.</p></article>
+        <article class="card"><span class="emoji">🫶</span><h3>What love should be</h3><p>Care, honesty, patience, respect, and showing it through actions.</p></article>
+      </div>
+      <button class="btn next" data-next="3">There's something I want to tell you →</button>
+    </div>
+  </section>
+
+  <section class="screen pink" id="screen3" aria-label="Love letter screen" style="background:linear-gradient(135deg,#fff8fa,#ffe4ed)">
+    <div class="heart-sky" aria-hidden="true"></div>
+    <div class="screen-inner note">
+      <div class="heart-big" style="font-size:4rem">♡</div>
+      <h2>A note from my heart, Panda</h2>
+      <p>I may not always find the perfect words, but I know that you matter to me. I’m grateful for the moments we’ve shared, and I’ve been thinking about what love needs: listening, patience, honesty, and real effort.</p>
+      <p>If you ever feel open to talking about us, I would value the chance to listen and understand how you feel. I don’t want to rush you or ask you to decide before you’re ready. Your feelings matter, too.</p>
+      <p>Whatever your answer, I wanted you to know that this little universe was made with care, just for you.</p>
+      <div class="sign">With all my heart, ♥</div>
+      <div style="margin-top:28px"><button class="btn next" data-next="4">One last little question…</button></div>
+    </div>
+  </section>
+
+  <section class="screen purple" id="screen4" aria-label="Final question screen">
+    <div class="heart-sky" aria-hidden="true"></div>
+    <div class="screen-inner">
+      <div class="kicker">No pressure. Just honesty.</div>
+      <div class="heart-big">♥</div>
+      <h2>🐼 Panda, do you still love me? ❤️</h2>
+      <p class="sub">A little question from my heart. Whatever your answer, I want you to feel free to be honest with me.</p>
+      <div class="choices">
+        <button class="btn" id="openBtn">Yes ❤️</button>
+        <button class="btn secondary" id="noBtn">No 💔</button>
+      </div>
+      <div class="message" id="message" role="status" aria-live="polite"></div>
+      <button class="btn secondary" id="restartBtn" style="margin-top:18px">Read it again ↺</button>
+    </div>
+  </section>
+</main>
+<footer class="foot">For Panda, with care and a thousand little hearts. ♥</footer>
+
+<script>
+const screens = [...document.querySelectorAll('.screen')];
+const progress = document.getElementById('progress');
+function showScreen(n) {
+  screens.forEach((s, i) => {
+    const active = i === n - 1;
+    s.classList.toggle('active', active);
+    s.setAttribute('aria-hidden', String(!active));
+  });
+  progress.style.width = (n / screens.length * 100) + '%';
+  window.scrollTo({top:0, behavior:'smooth'});
+  if (n === 4) heartBurst();
+}
+document.querySelectorAll('.next').forEach(btn => btn.addEventListener('click', () => showScreen(Number(btn.dataset.next))));
+document.getElementById('restartBtn').addEventListener('click', () => showScreen(1));
+
+function makeHearts(sky, count) {
+  const hearts = ['♥','♡','ღ','❤','💕'];
+  const colors = ['#ff5f91','#ff9fbd','#ffd2df','#eeb5ff','#ffe1b4'];
+  for (let i=0; i<count; i++) {
+    const h=document.createElement('span'); h.className='float-heart';
+    h.textContent=hearts[Math.floor(Math.random()*hearts.length)];
+    h.style.setProperty('--x',Math.random()*100+'%');
+    h.style.setProperty('--size',(12+Math.random()*30)+'px');
+    h.style.setProperty('--color',colors[Math.floor(Math.random()*colors.length)]);
+    h.style.setProperty('--duration',(9+Math.random()*15)+'s');
+    h.style.setProperty('--delay',(-Math.random()*24)+'s');
+    h.style.setProperty('--drift',(Math.random()*180-90)+'px');
+    h.style.setProperty('--spin',(Math.random()*100-50)+'deg');
+    h.style.setProperty('--op',(0.28+Math.random()*0.58).toFixed(2));
+    sky.appendChild(h);
+  }
+  for(let i=0;i<20;i++){
+    const star=document.createElement('span');star.className='twinkle';star.textContent='✦';
+    star.style.setProperty('--x',Math.random()*100+'%');star.style.setProperty('--y',Math.random()*100+'%');
+    star.style.setProperty('--duration',(2+Math.random()*5)+'s');star.style.setProperty('--delay',(-Math.random()*5)+'s');
+    sky.appendChild(star);
+  }
+}
+document.querySelectorAll('.heart-sky').forEach(sky=>makeHearts(sky,sky.closest('#screen1')?50:22));
+
+function heartBurst() {
+  const symbols=['♥','♡','💗','✦','💕'], cx=innerWidth/2, cy=innerHeight*.68;
+  for(let i=0;i<55;i++){
+    const p=document.createElement('span');p.className='burst';
+    p.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+    p.style.left=cx+'px';p.style.top=cy+'px';
+    p.style.color=['#ff5f91','#ffb2ca','#ffdca8','#eeb5ff'][Math.floor(Math.random()*4)];
+    p.style.setProperty('--s',(12+Math.random()*24)+'px');
+    p.style.setProperty('--dx',(Math.random()*560-280)+'px');
+    p.style.setProperty('--dy',(Math.random()*500-250)+'px');
+    p.style.setProperty('--rot',(Math.random()*500-250)+'deg');
+    document.body.appendChild(p);setTimeout(()=>p.remove(),1400);
+  }
+}
+const message=document.getElementById('message');
+const noBtn = document.getElementById('noBtn');
+function moveNoButton() {
+  const pad = 14;
+  const rect = noBtn.getBoundingClientRect();
+  const maxX = Math.max(pad, window.innerWidth - rect.width - pad);
+  const maxY = Math.max(pad, window.innerHeight - rect.height - pad);
+  noBtn.style.position = 'fixed';
+  noBtn.style.zIndex = '200';
+  noBtn.style.left = (pad + Math.random() * (maxX - pad)) + 'px';
+  noBtn.style.top = (pad + Math.random() * (maxY - pad)) + 'px';
+  noBtn.style.transition = 'left .18s ease, top .18s ease';
+}
+noBtn.addEventListener('pointerenter', moveNoButton);
+noBtn.addEventListener('pointerdown', (event) => {
+  event.preventDefault();
+  moveNoButton();
+});
+noBtn.addEventListener('click', (event) => {
+  event.preventDefault();
+  moveNoButton();
+});
+document.getElementById('openBtn').addEventListener('click',()=>{
+  message.textContent='You just made my heart so happy, Panda! ❤️💗 Thank you for being honest with me.';
+  heartBurst();
+  // Keep the celebration going with a second wave of hearts.
+  setTimeout(heartBurst, 450);
+});
+showScreen(1);
+</script>
+</body>
+</html>
